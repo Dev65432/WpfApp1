@@ -11,7 +11,7 @@ namespace WpfApp1.DAL
 
         public Picture GetItemNoTracking(int id)
         {
-            return base.GetNoTracking(id);
+            return base.GetNoTracking2(id);
             
             // return Items.AsNoTracking().SingleOrDefault(item => item.Id == id);        
         }

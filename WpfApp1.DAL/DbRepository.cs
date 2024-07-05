@@ -29,7 +29,7 @@ namespace WpfApp1.DAL
            .SingleOrDefaultAsync(item => item.Id == id, Cancel)
            .ConfigureAwait(false);
 
-        public T GetNoTracking(int id)
+        public T GetNoTracking2(int id)
         { 
            return Items.AsNoTracking().SingleOrDefault(item => item.Id == id);
 

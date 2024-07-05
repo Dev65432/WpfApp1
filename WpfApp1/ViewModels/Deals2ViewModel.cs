@@ -156,8 +156,8 @@ namespace WpfApp1.ViewModels
                     SelectedDeal.Pictures.Add(picture);
 
                     // _dealsRepository --- --- --- --- ---
-                    //var dealUp = _dealsRepository.Get(SelectedDeal.Id);
-                    //dealUp.Pictures = SelectedDeal.Pictures;
+                    var dealUp = _dealsRepository.Get(SelectedDeal.Id);
+                    dealUp.Pictures = SelectedDeal.Pictures;
 
                     //_dealsRepository.Update(dealUp);
 
@@ -195,14 +195,14 @@ namespace WpfApp1.ViewModels
                     // =====
 
                     // _pictureRepository --- --- --- --- ---
-                    var picUp = _pictureRepository.ge Get(picture.Id);
-                    if (picUp == null)
-                    {
-                        _pictureRepository.Add(picture);
-                        return;
-                    }
-                    picUp = picture;
-                    _pictureRepository.Update(picUp);
+                    //var picUp = _pictureRepository.Get(picture.Id);
+                    //if (picUp == null)
+                    //{
+                    //    _pictureRepository.Add(picture);
+                    //    return;
+                    //}
+                    //picUp = picture;
+                    //_pictureRepository.Update(picUp);
 
 
                 }
