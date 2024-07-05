@@ -1,0 +1,127 @@
+﻿<UserControl x:Class="WpfApp1.Views.UC.Deals2UC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfApp1.Views.UC"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="1200">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadDataCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid>
+        <GroupBox Header="{Binding Title}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="500"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <!--Список сделок-->
+                <GroupBox Header="Сделки" Grid.Column="0">
+                    <ListBox x:Name="listDeals" ItemsSource="{Binding Deals}"
+                            SelectedItem="{Binding SelectedDeal}"
+                             Margin="10" 
+                            ScrollViewer.VerticalScrollBarVisibility="Visible" 
+                            ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                            >
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>                                        
+                                    </Grid.ColumnDefinitions>                                    
+                                    <StackPanel Margin="3" Grid.Column="0">
+                                        <StackPanel.Resources>
+                                            <Style x:Key="TextBlockTitle" TargetType="TextBlock" >
+                                                <Setter Property="FontWeight" Value="Bold"/>
+                                                <Setter Property="Margin" Value="5,0,10,0"/>
+                                                <Setter Property="DockPanel.Dock" Value="Left"/>
+                                            </Style>
+                                            <Style x:Key="TextBlockContent" TargetType="TextBlock" >
+                                                <Setter Property="FontWeight" Value="Bold"/>
+                                                <Setter Property="Foreground" Value="Green"/>
+                                                <!--<Setter Property="DockPanel.Dock" Value="Top"/>-->
+                                            </Style>
+                                        </StackPanel.Resources>                                        
+                                        <DockPanel>
+                                            <TextBlock Text="Id:" Style="{StaticResource TextBlockTitle}" />
+                                            <TextBlock Text="{Binding Id}" Style="{StaticResource TextBlockContent}" />
+                                        </DockPanel>
+                                        <DockPanel>
+                                            <TextBlock Text="Name:" Style="{StaticResource TextBlockTitle}"/>
+                                            <TextBlock Text="{Binding Name}"  Style="{StaticResource TextBlockContent}" />
+                                        </DockPanel>
+                                    </StackPanel>                                    
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </GroupBox>
+
+                <!--Детали сделки-->
+                <GroupBox Header="{Binding SelectedDeal.Name}" Grid.Column="1">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+
+                            </Grid.RowDefinitions>
+                            <Grid.Resources>
+                                <Style TargetType="TextBlock">
+                                    <Style.Triggers>
+                                        <Trigger Property="Grid.Column" Value="0">
+                                            <Setter Property="HorizontalAlignment" Value="Right"/>
+                                            <Setter Property="Margin" Value="0,0,2,0"/>
+                                            <Setter Property="FontWeight" Value="Bold"/>
+                                        </Trigger>
+                                        <Trigger Property="Grid.Column" Value="1">
+                                            <Setter Property="Margin" Value="2,0,0,0"/>
+                                            <!--<Setter Property="Padding" Value="2,10,10,0"/>-->
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Grid.Resources>
+                            <TextBlock Grid.Column="0" Grid.Row="1" Text="ID позиции:"/>                            
+                            <TextBox Grid.Column="1" Grid.Row="1" 
+                                 Text="{Binding SelectedDeal.Id}"/>
+
+                            <TextBlock Grid.Column="0" Grid.Row="2" Text="Имя:"/>
+                            <TextBox Grid.Column="1" Grid.Row="2" 
+                                 Text="{Binding SelectedDeal.Name}"/>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <GroupBox Header="Картинка открытия сделки" Grid.Column="0">
+                                <StackPanel>
+                                    <UniformGrid>
+                                        <Button Content="Добавить" Command="{Binding InsertPictureOfOpeningOftransactionCommand}"/>                                        
+                                    </UniformGrid>
+
+                                    <Image Height="150" />
+
+                                </StackPanel>
+                            </GroupBox>
+                        </Grid>
+                    </Grid>
+                </GroupBox>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</UserControl>
