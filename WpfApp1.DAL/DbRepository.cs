@@ -23,11 +23,23 @@ namespace WpfApp1.DAL
 
         public virtual IQueryable<T> Items => _Set;
 
-        public T Get(int id) => Items.SingleOrDefault(item => item.Id == id);
+        public T Get(int id) => Items.SingleOrDefault(item => item.Id == id);        
 
         public async Task<T> GetAsync(int id, CancellationToken Cancel = default) => await Items
            .SingleOrDefaultAsync(item => item.Id == id, Cancel)
            .ConfigureAwait(false);
+
+        public T GetNoTracking(int id)
+        { 
+           return Items.AsNoTracking().SingleOrDefault(item => item.Id == id);
+
+            /*
+             * Product Products = await _context.Products
+                    .AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+                return Products;
+             */
+        }
+
 
         public T Add(T item)
         {

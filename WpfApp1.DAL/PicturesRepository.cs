@@ -9,6 +9,13 @@ namespace WpfApp1.DAL
     {
         public override IQueryable<Picture> Items => base.Items;
 
+        public Picture GetItemNoTracking(int id)
+        {
+            return base.GetNoTracking(id);
+            
+            // return Items.AsNoTracking().SingleOrDefault(item => item.Id == id);        
+        }
+
         public PicturesRepository(cntxDBWpfApp1 db) : base(db) { }
     }
 }

@@ -20,16 +20,16 @@ namespace WpfApp1.ViewModels
     public class Deals2ViewModel : ViewModelBase
     {
         IConfiguration _configuration;
-        private IRepository<Deal> _dealsRepository;        
+        private IRepository<Deal> _dealsRepository;
         private IRepository<Picture> _pictureRepository;
 
         public Deals2ViewModel(IConfiguration configuration,
-                               IRepository<Deal> DealsRepository,                               
+                               IRepository<Deal> DealsRepository,
                                IRepository<Picture> pictureRepository)
         {
             _configuration = configuration;
-            _dealsRepository = DealsRepository;            
-            _pictureRepository = pictureRepository;            
+            _dealsRepository = DealsRepository;
+            _pictureRepository = pictureRepository;
         }
 
         private string _title = "Заголовок. DealsViewModel ";
@@ -92,12 +92,12 @@ namespace WpfApp1.ViewModels
         {
             try
             {
-                
+
                 // Deals 
                 var items = await _dealsRepository.Items.ToArrayAsync();
                 Deals = new BindingList<Deal>(items);
                 SelectedDeal = Deals[1];
-                
+
 
             }
             catch (Exception ex)
@@ -143,11 +143,12 @@ namespace WpfApp1.ViewModels
                     var rnd = new Random();
 
                     int i = rnd.Next(0, 10000);
-                    
+
                     Picture picture = new Picture
                     {
-                        Id = i,
-                        Name = nameFile,                        
+                        // Id = i,
+                        Id = 6905,
+                        Name = nameFile,
                         DealId = SelectedDeal.Id,
                         Deal = SelectedDeal
                     };
@@ -155,15 +156,55 @@ namespace WpfApp1.ViewModels
                     SelectedDeal.Pictures.Add(picture);
 
                     // _dealsRepository --- --- --- --- ---
-                    // var dealUp = _dealsRepository.Get(SelectedDeal.Id);                    
-                    // dealUp.Pictures = SelectedDeal.Pictures;
+                    //var dealUp = _dealsRepository.Get(SelectedDeal.Id);
+                    //dealUp.Pictures = SelectedDeal.Pictures;
 
                     //_dealsRepository.Update(dealUp);
 
                     // _pictureRepository --- --- --- --- ---
-                     var picUp = _pictureRepository.Get(picture.Id);
-                          picUp = picture;
-                     _pictureRepository.Update(picUp);
+                    //var picUp = _pictureRepository.Get(picture.Id);
+                    //if (picUp == null)
+                    //{
+                    //    _pictureRepository.Add(picture);
+                    //    return;
+                    //}
+                    //picUp = picture;
+                    //_pictureRepository.Update(picUp);
+
+                    // _pictureRepository --- --- --- --- ---
+                    //var picUp = _pictureRepository.Get(picture.Id);
+                    //if (picUp == null)
+                    //{
+                    //    _pictureRepository.Add(picture);
+                    //    return;
+                    //}
+                    //picUp.Name = picture.Name;
+                    //_pictureRepository.Update(picUp);
+
+                    //// _pictureRepository --- --- --- --- ---
+                    //var picUp = _pictureRepository.Get(picture.Id);
+                    //if (picUp == null)
+                    //{
+                    //    _pictureRepository.Add(picture);
+                    //    return;
+                    //}
+                    //// picUp.Name = picture.Name;
+                    //_pictureRepository.Update(picture);
+
+
+                    // =====
+
+                    // _pictureRepository --- --- --- --- ---
+                    var picUp = _pictureRepository.ge Get(picture.Id);
+                    if (picUp == null)
+                    {
+                        _pictureRepository.Add(picture);
+                        return;
+                    }
+                    picUp = picture;
+                    _pictureRepository.Update(picUp);
+
+
                 }
                 else
                 {

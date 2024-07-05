@@ -1,4 +1,5 @@
-﻿using WpfApp1.DAL.Entityes;
+﻿
+using WpfApp1.DAL.Entityes;
 using Microsoft.EntityFrameworkCore;
 
 namespace WpfApp1.DAL.Context
