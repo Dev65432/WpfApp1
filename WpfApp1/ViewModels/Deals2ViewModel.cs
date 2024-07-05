@@ -161,7 +161,7 @@ namespace WpfApp1.ViewModels
                     //_dealsRepository.Update(dealUp);
 
                     // _pictureRepository --- --- --- --- ---
-                     var picUp = _pictureRepository.Get(picture.Id);
+                     var picUp = _pictureRepository.get Get(picture.Id);
                           picUp = picture;
                      _pictureRepository.Update(picUp);
                 }
