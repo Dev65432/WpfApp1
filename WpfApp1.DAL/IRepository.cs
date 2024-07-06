@@ -10,6 +10,8 @@ namespace WpfApp1.DAL
 
         T Get(int id);
         Task<T> GetAsync(int id, CancellationToken Cancel = default);
+        
+        T GetNoTracking(int id);
 
         T Add(T item);
         Task<T> AddAsync(T item, CancellationToken Cancel = default);

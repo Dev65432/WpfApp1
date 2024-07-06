@@ -156,8 +156,12 @@ namespace WpfApp1.ViewModels
                     SelectedDeal.Pictures.Add(picture);
 
                     // _dealsRepository --- --- --- --- ---
-                    var dealUp = _dealsRepository.Get(SelectedDeal.Id);
-                    dealUp.Pictures = SelectedDeal.Pictures;
+                     var dealUp = _dealsRepository.GetNoTracking(SelectedDeal.Id);
+                     dealUp.Pictures = SelectedDeal.Pictures;
+
+                    // _dealsRepository --- --- --- --- ---
+                    // var dealUp = _dealsRepository.GetNoTracking(SelectedDeal.Id);
+                    // dealUp.Pictures = SelectedDeal.Pictures;
 
                     //_dealsRepository.Update(dealUp);
 
